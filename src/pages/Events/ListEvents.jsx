@@ -8,7 +8,6 @@ export default function Events() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [loading, setLoading] = useState(true);
-  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +16,7 @@ export default function Events() {
         setLoading(true);
         const res = await api.get("/afghan/event/");
         setEvents(res.data || []);
+        console.log(res.data)
       } catch (error) {
         console.error("Failed to fetch events:", error);
       } finally {
@@ -25,6 +25,22 @@ export default function Events() {
     };
     fetchEvents();
   }, []);
+
+const formatDate = (d) => {
+  console.log(d)
+  try {
+    return new Date(d).toLocaleString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: 'UTC' 
+    });
+  } catch (e) {
+    return d;
+  }
+};
+
 
 const filtered = useMemo(() => {
   const q = query.trim().toLowerCase();
@@ -64,16 +80,10 @@ const filtered = useMemo(() => {
     return text.length > length ? text.substring(0, length) + "..." : text;
   };
 
-  const formatDate = (d) => {
-    try {
-      return new Date(d).toLocaleDateString();
-    } catch (e) {
-      return d;
-    }
-  };
+
 
   return (
-    <div className=" max-w-7xl px-4 py-4 space-y-8">
+    <div className=" max-w-7xl px-2 py-2 space-y-6">
       <header className="flex flex-col md:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-extrabold text-gray-900">Events</h1>
@@ -116,7 +126,6 @@ const filtered = useMemo(() => {
         </div>
       </header>
 
-      {/* Grid */}
       <section>
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -140,7 +149,7 @@ const filtered = useMemo(() => {
                 aria-label={`Open ${event.name}`}
               >
                 <div className="relative">
-                  {(event.image || event.image_url) ? (
+                  {(event.image_url) ? (
                     <img
                       src={event.image || event.image_url}
                       alt={event.name}
@@ -187,7 +196,7 @@ const filtered = useMemo(() => {
           <span className="bg-indigo-50 p-2 rounded-full flex items-center justify-center">
             <ArrowUp className="w-4 h-4 text-indigo-600" />
           </span>
-          <span className="text-sm font-medium text-gray-700">Back to events</span>
+          <span className="text-sm font-medium text-gray-700">Back to top</span>
         </button>
         
       </div>

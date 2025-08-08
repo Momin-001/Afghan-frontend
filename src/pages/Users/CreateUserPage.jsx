@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../lib/interceptor";
-import { X, UserPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 
 const CreateUserPage = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const CreateUserPage = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="px-2 py-2 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-extrabold text-gray-900">Create Users</h1>

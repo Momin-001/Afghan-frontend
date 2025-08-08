@@ -16,7 +16,7 @@ const SettingsPage = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="px-2 py-2 space-y-6">
       <div>
         <h1 className="text-3xl font-extrabold text-gray-900">Settings</h1>
         <p className="text-gray-600 mt-2">Manage your account settings and preferences</p>

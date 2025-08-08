@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   Users,
-  TrendingUp,
-  DollarSign,
-  Activity,
   UserPlus,
   Building2,
   Tag,
@@ -46,7 +43,6 @@ const Dashboard = () => {
     },
   ]);
 
-  // Counter Animation
   useEffect(() => {
     const interval = setInterval(() => {
       setStats((prevStats) =>
@@ -90,7 +86,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="px-2 py-2 space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-extrabold text-gray-900">Dashboard</h1>

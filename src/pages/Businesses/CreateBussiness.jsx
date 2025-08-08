@@ -89,7 +89,6 @@ const handleChange = (e) => {
         [name]: type === "file" ? updatedValue : updatedValue,
     }));
 
-    // Special handling for map URL
     if (name === "map_location_url" && type !== "file" && type !== "checkbox") {
         const result = extractLatLonFromGoogleMapsUrl(updatedValue);
 
@@ -142,7 +141,7 @@ const handleChange = (e) => {
 
 
     return (
-        <div className="space-y-6">
+        <div className="py-2 px-2 space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-extrabold text-gray-900">Create Business</h1>

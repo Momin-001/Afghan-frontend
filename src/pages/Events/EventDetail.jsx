@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import api from "../../lib/interceptor";
 
-// Redesigned Event Detail page — sleek, card-based, responsive and colorful
 export default function EventDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -33,19 +32,29 @@ export default function EventDetail() {
   if (!event) {
     return (
       <div className="min-h-[200px] flex items-center justify-center">
-        <p className="text-gray-500">Loading event...</p>
+        <p className="text-gray-500">No Event Details</p>
       </div>
     );
   }
 
-  const formatDate = (d) => {
-    try {
-      const dt = new Date(d);
-      return dt.toLocaleString();
-    } catch (e) {
-      return d;
-    }
-  };
+const formatDate = (d) => {
+  try {
+    return new Date(d).toLocaleString(undefined, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: 'UTC' 
+    });
+  } catch (e) {
+    return d;
+  }
+};
+
+
 
   const initials = (name = "?") =>
     name
@@ -56,8 +65,7 @@ export default function EventDetail() {
       .toUpperCase();
 
   return (
-    <div className=" px-4 space-y-6">
-      {/* Back + Title Row */}
+    <div className="px-2 py-2 space-y-6">
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate(-1)}
@@ -69,18 +77,11 @@ export default function EventDetail() {
           </span>
           <span className="text-sm font-medium text-gray-700">Back to events</span>
         </button>
-
-        <div className="text-right">
-          <p className="text-xs text-gray-400">Event details</p>
-          <h2 className="text-lg font-semibold text-gray-900">{event.category || "General"}</h2>
-        </div>
       </div>
 
-      {/* Hero card */}
       <div className="grid md:grid-cols-3 gap-6">
         <div className="md:col-span-2 bg-gradient-to-tr from-white to-gray-50 rounded-xl p-5 shadow-lg border border-gray-100">
           <div className="flex flex-col  gap-5">
-            {/* Image */}
             <div className="w-full flex items-center justify-center">
               {event.image_url ? (
                 <img
@@ -95,7 +96,6 @@ export default function EventDetail() {
               )}
             </div>
 
-            {/* Primary content */}
             <div className="flex sm:flex-row justify-between">
               <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight">
                 {event.name}
@@ -119,7 +119,6 @@ export default function EventDetail() {
 
         </div>
 
-        {/* Right column: Quick details card */}
         <aside className="space-y-4">
           <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100">
             <h3 className="text-sm text-gray-400 uppercase tracking-wide">When & Where</h3>
@@ -161,7 +160,6 @@ export default function EventDetail() {
             </div>
           </div>
 
-          {/* Contact card */}
           <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100">
             <h3 className="text-sm text-gray-400 uppercase tracking-wide">Organizer</h3>
             <div className="mt-3 flex items-center gap-3">
@@ -196,12 +194,9 @@ export default function EventDetail() {
             </div>
           </div>
 
-          {/* Open in maps */}
-
         </aside>
       </div>
 
-      {/* Additional cards row */}
       <div className="grid gap-6">
         <div className="bg-white rounded-xl p-6 shadow border border-gray-100">
           <h4 className="text-sm text-gray-400 uppercase tracking-wide">Full description</h4>
