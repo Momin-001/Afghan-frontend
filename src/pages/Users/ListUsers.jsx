@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Search, Plus, MoreHorizontal, Edit, Trash2, Filter, Slash } from "lucide-react";
-import api from "../lib/interceptor";
-import { useAuth } from "../contexts/AuthContext";
+import api from "../../lib/interceptor";
+import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const UsersPage = () => {
@@ -144,7 +144,7 @@ const UsersPage = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border hidden sm:block border-gray-200 overflow-visible">
+        <div className="bg-white rounded-lg shadow-sm border hidden md:block border-gray-200 overflow-visible">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
@@ -231,7 +231,7 @@ const UsersPage = () => {
             </tbody>
           </table>
         </div>
-        <div className="sm:hidden space-y-5">
+        <div className="md:hidden space-y-5">
           {filteredUsers.map((user) => (
             <div
               key={user.id}

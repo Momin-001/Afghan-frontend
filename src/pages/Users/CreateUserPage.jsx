@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../lib/interceptor";
+import api from "../../lib/interceptor";
 import { X, UserPlus } from "lucide-react";
 
 const CreateUserPage = () => {

@@ -11,7 +11,7 @@ const SettingsPage = () => {
   const tabs = [
     { id: "profile", name: "Profile", icon: User },
     { id: "security", name: "Security", icon: Shield },
-    { id: "appearance", name: "Appearance", icon: Palette },
+    // { id: "appearance", name: "Appearance", icon: Palette },
     { id: "advanced", name: "Advanced", icon: Globe },
   ];
 
@@ -54,9 +54,9 @@ const SettingsPage = () => {
             <SecurityComponent/>
           )}
 
-          {activeTab === "appearance" && (
+          {/* {activeTab === "appearance" && (
             <AppearanceComponent/>
-          )}
+          )} */}
 
           {activeTab === "advanced" && (
             <AdvancedComponent/>
